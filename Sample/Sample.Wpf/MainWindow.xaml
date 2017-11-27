@@ -1,0 +1,321 @@
+﻿<Window x:Class="Sample.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="665" Width="1350" Background="White">
+    <Grid>
+        <ListBox Name="accountList" SelectionMode="Multiple"  HorizontalAlignment="Left" Height="600" Margin="0,30,0,0" VerticalAlignment="Top" Width="200" FontSize="14">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <!-- Background of selected item when focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightCyan"/>
+                        <!-- Background of selected item when not focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightGray" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <Label Name="accountsLabel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="200" FontSize="14" FontWeight="Bold"/>
+        <WindowsFormsHost x:Name="incomingPaymentsPieHost" Margin="200,30,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="incomingPaymentsPieChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Incoming Payments (%)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series Palette="SeaGreen" MarkerColor="Black" ChartType="Pie" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="50" LightStyle="Realistic" WallWidth="10"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="incomingPaymentsBarHost" Margin="400,30,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="incomingPaymentsBarChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Incoming Payments (UAH)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series MarkerColor="Black" Color="Aquamarine" ChartType="Bar" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="20" LightStyle="Realistic" WallWidth="3"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="outgoingPaymentsPieHost" Margin="800,30,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="outgoingPaymentsPieChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Outgoing Payments (%)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series Palette="Fire" MarkerColor="Black" ChartType="Pie"/>
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="50" LightStyle="Realistic" WallWidth="10"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="outgoingPaymentsBarHost" Margin="1000,30,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="outgoingPaymentsBarChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Outgoing Payments (UAH)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series MarkerColor="Black" Color="LightSalmon" ChartType="Bar" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="20" LightStyle="Realistic" WallWidth="3"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="incomingTaxesPieHost" Margin="200,230,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="incomingTaxesPieChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Incoming Taxes (%)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series Palette="EarthTones" MarkerColor="Black" ChartType="Pie" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="50" LightStyle="Realistic" WallWidth="10"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="incomingTaxesBarHost" Margin="400,230,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="incomingTaxesBarChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Incoming Taxes (UAH)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series MarkerColor="Black" Color="DarkKhaki" ChartType="Bar" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="20" LightStyle="Realistic" WallWidth="3"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="outgoingTaxesPieHost" Margin="800,230,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="outgoingTaxesPieChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Outgoing Taxes (%)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series Palette="Berry" MarkerColor="Black" ChartType="Pie" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="50" LightStyle="Realistic" WallWidth="10"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="outgoingTaxesBarHost" Margin="1000,230,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="outgoingTaxesBarChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Outgoing Taxes (UAH)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series MarkerColor="Black" Color="Plum" ChartType="Bar" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="20" LightStyle="Realistic" WallWidth="3"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="totalTaxesPieHost" Margin="400,430,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="totalTaxesPieChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Total Taxes (%)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series Palette="Bright" MarkerColor="Black" ChartType="Pie" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="50" LightStyle="Realistic" WallWidth="10"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <WindowsFormsHost x:Name="totalTaxesBarHost" Margin="600,430,0,0" HorizontalAlignment="Left" Width="200" Height="200" VerticalAlignment="Top">
+            <charting:Chart x:Name="totalTaxesBarChart" Dock="Fill" AllowDrop="False" TabIndex="0">
+                <charting:Chart.Titles>
+                    <charting:Title Text="Total Taxes (UAH)" TextStyle="Shadow"/>
+                </charting:Chart.Titles>
+                <charting:Chart.Series>
+                    <charting:Series MarkerColor="Black" Color="Violet" ChartType="Bar" />
+                </charting:Chart.Series>
+                <charting:Chart.ChartAreas>
+                    <charting:ChartArea BorderWidth="0" BackGradientStyle="LeftRight" AlignmentStyle="Position" AlignmentOrientation="None" >
+                        <charting:ChartArea.Area3DStyle>
+                            <charting:ChartArea3DStyle Enable3D="True" PointDepth="50" PointGapDepth="50" Rotation="20" LightStyle="Realistic" WallWidth="3"/>
+                        </charting:ChartArea.Area3DStyle>
+                    </charting:ChartArea>
+                </charting:Chart.ChartAreas>
+            </charting:Chart>
+        </WindowsFormsHost>
+        <ListBox x:Name="incomingPaymentTypeList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="100" Margin="605,30,0,0" VerticalAlignment="Top" Width="130">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <!-- Background of selected item when focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightCyan"/>
+                        <!-- Background of selected item when not focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightGray" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <DatePicker x:Name="incomingPaymentFromDate" HorizontalAlignment="Left" Margin="605,135,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="incomingPaymentToDate" HorizontalAlignment="Left" Margin="605,164,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="incomingPaymentIdList" HorizontalAlignment="Left" Height="0" Margin="605,30,0,0" VerticalAlignment="Top" Width="0" Visibility="Hidden"/>
+        <ListBox x:Name="outgoingPaymentTypeList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="100" Margin="1205,30,0,0" VerticalAlignment="Top" Width="130">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <!-- Background of selected item when focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightCyan"/>
+                        <!-- Background of selected item when not focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightGray" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <DatePicker x:Name="outgoingPaymentFromDate" HorizontalAlignment="Left" Margin="1205,135,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="outgoingPaymentToDate" HorizontalAlignment="Left" Margin="1205,164,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="outgoingPaymentIdList" HorizontalAlignment="Left" Height="0" Margin="1205,30,0,0" VerticalAlignment="Top" Width="0" Visibility="Hidden"/>
+        <ListBox x:Name="incomingTaxTypeList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="100" Margin="605,230,0,0" VerticalAlignment="Top" Width="130">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <!-- Background of selected item when focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightCyan"/>
+                        <!-- Background of selected item when not focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightGray" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox x:Name="incomingTaxIdList" HorizontalAlignment="Left" Height="0" Margin="605,230,0,0" VerticalAlignment="Top" Width="0" Visibility="Hidden"/>
+        <ListBox x:Name="outgoingTaxTypeList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="100" Margin="1205,230,0,0" VerticalAlignment="Top" Width="130">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        <!-- Background of selected item when focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightCyan"/>
+                        <!-- Background of selected item when not focussed -->
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightGray" />
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox x:Name="outgoingTaxIdList" HorizontalAlignment="Left" Height="0" Margin="1205,230,0,0" VerticalAlignment="Top" Width="0" Visibility="Hidden"/>
+    </Grid>
+</Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{24443EED-47AC-4BA3-A794-FD164FDCC5A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sample.Extensibility</RootNamespace>
+    <AssemblyName>Sample.Extensibility</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>..\Sample\bin\</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>..\Sample\bin\</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataSource\Entities\IDateAmount.cs" />
+    <Compile Include="DataSource\Entities\IPayment.cs" />
+    <Compile Include="DataSource\Entities\ITax.cs" />
+    <Compile Include="DataSource\Enums\IncomingPaymentType.cs" />
+    <Compile Include="DataSource\Enums\IncomingTaxType.cs" />
+    <Compile Include="DataSource\Enums\OutgoingPaymentType.cs" />
+    <Compile Include="DataSource\Enums\OutgoingTaxType.cs" />
+    <Compile Include="DataSource\Entities\IAccount.cs" />
+    <Compile Include="DataSource\Entities\IIncomingPayment.cs" />
+    <Compile Include="DataSource\Entities\IIncomingTax.cs" />
+    <Compile Include="DataSource\Entities\IOutgoingPayment.cs" />
+    <Compile Include="DataSource\Entities\IOutgoingTax.cs" />
+    <Compile Include="DataSource\Repositories\IAccountRepository.cs" />
+    <Compile Include="DataSource\Repositories\IIncomingPaymentRepository.cs" />
+    <Compile Include="DataSource\Repositories\IIncomingTaxRepository.cs" />
+    <Compile Include="DataSource\Repositories\IOutgoingPaymentRepository.cs" />
+    <Compile Include="DataSource\Repositories\IOutgoingTaxRepository.cs" />
+    <Compile Include="Domain\Filters\IIncomingPaymentFilter.cs" />
+    <Compile Include="Domain\Filters\IIncomingTaxFilter.cs" />
+    <Compile Include="Domain\Filters\IOutgoingPaymentFilter.cs" />
+    <Compile Include="Domain\Filters\IOutgoingTaxFilter.cs" />
+    <Compile Include="Domain\Filters\IPaymentFilter.cs" />
+    <Compile Include="Domain\Filters\ITaxFiltercs.cs" />
+    <Compile Include="Domain\Filters\IDateFilter.cs" />
+    <Compile Include="Domain\ICalculationService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
