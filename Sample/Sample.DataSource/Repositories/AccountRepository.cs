@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using MongoDB.Driver;
 using Sample.DataSource.Extensibility;
+using Sample.DataSource.Extensibility.Data;
 using Sample.Extensibility.DataSource.Entities;
 using Sample.Extensibility.DataSource.Repositories;
 
@@ -16,7 +18,7 @@ namespace Sample.DataSource.Repositories
 
         public IEnumerable<IAccount> GetAccounts()
         {
-            return dataStore.Accounts;
+            return dataStore.Accounts.AsQueryable();
         }
     }
 }

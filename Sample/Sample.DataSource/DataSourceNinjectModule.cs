@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
-using Sample.DataSource.Extensibility;
-using Sample.DataSource.Generator;
+using Sample.DataSource.Data;
+using Sample.DataSource.Extensibility.Data;
 using Sample.DataSource.Repositories;
 using Sample.Extensibility.DataSource.Repositories;
 
@@ -10,7 +10,8 @@ namespace Sample.DataSource
     {
         public override void Load()
         {
-            Bind<IDataStore>().To<DataStore>();
+            Bind<IDataGenerator>().To<DataGenerator>();
+            Bind<IDataStore>().To<DataStore>().InSingletonScope();
             Bind<IAccountRepository>().To<AccountRepository>();
             Bind<IIncomingPaymentRepository>().To<IncomingPaymentRepository>();
             Bind<IOutgoingPaymentRepository>().To<OutgoingPaymentRepository>();

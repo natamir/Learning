@@ -1,2 +1,0 @@
-H:\Projects\Sample\Sample\bin\Debug\Sample.Extensibility.dll
-H:\Projects\Sample\Sample\bin\Debug\Sample.Extensibility.pdb

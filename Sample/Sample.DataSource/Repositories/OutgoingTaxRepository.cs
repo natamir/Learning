@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Sample.DataSource.Extensibility;
+using System.Linq.Expressions;
+using MongoDB.Driver;
+using Sample.DataSource.Extensibility.Data;
 using Sample.Extensibility.DataSource.Entities;
 using Sample.Extensibility.DataSource.Repositories;
 using Sample.Extensibility.Domain.Filters;
@@ -18,9 +21,9 @@ namespace Sample.DataSource.Repositories
 
         public IEnumerable<IOutgoingTax> GetOutgoingTaxes(IOutgoingTaxFilter outgoingPaymentFilter)
         {
-            return dataStore.OutgoingTaxes.Where(
-                tax => IsPaymentMatch(outgoingPaymentFilter, tax) &&
-                       IsTypeMatch(outgoingPaymentFilter, tax));
+            Expression<Func<IOutgoingTax, bool>> predicate = tax => IsPaymentMatch(outgoingPaymentFilter, tax) &&
+                                                                    IsTypeMatch(outgoingPaymentFilter, tax);
+            return dataStore.OutgoingTaxes.AsQueryable().Where(predicate.Compile());
         }
 
         private static bool IsTypeMatch(IOutgoingTaxFilter taxFilter, IOutgoingTax tax)
